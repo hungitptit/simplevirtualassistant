@@ -1,0 +1,70 @@
+@ECHO OFF
+
+title Folder Locker
+
+if EXIST "abc" goto UNLOCK 
+
+if NOT EXIST "Secret Folder" goto MDLOCKER
+
+:CONFIRM
+
+echo Ban co muon khoa folder khong?(Y/N)
+
+set/p "cho=>"
+
+if %cho%==Y goto LOCK
+
+if %cho%==y goto LOCK
+
+if %cho%==n goto END
+
+if %cho%==N goto END
+
+echo Invalid choice.
+
+goto CONFIRM
+
+:LOCK
+del Output
+ren "Secret Folder" "abc"
+
+attrib +h +s "abc"
+
+echo Folder locked
+
+goto End
+
+:UNLOCK
+
+SET PASS=V
+python "%CD%\va.py" 
+SET /p MYVAR=<Output
+if %MYVAR%==%PASS% goto DONE
+for /f "tokens=*" %%a in (Output) do (
+  if %%a==%PASS% goto DONE
+)
+goto FAIL
+
+:DONE
+cls
+attrib -h -s "abc"
+
+ren "abc" "Secret Folder"
+
+goto End
+
+:FAIL
+pause
+echo Invalid password
+
+goto End
+
+:MDLOCKER
+
+md "Secret Folder"
+
+echo Secret Folder created successfully
+
+goto End
+
+:End

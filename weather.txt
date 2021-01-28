@@ -1,0 +1,7 @@
+ City name: Hanoi
+ Temperature (in kelvin unit) : 291.15, (in Celsius unit) : 18.0
+ Minimum temperature : 18.0
+ Maximum temperature : 18.0
+ Atmospheric pressure (in hPa unit) : 1023
+ Humidity (in percentage) : 72
+ Description : broken clouds
